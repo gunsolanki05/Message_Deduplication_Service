@@ -1,6 +1,10 @@
-# Deduplication Service
+# Message Deduplication Service
 
 A Node.js service for message deduplication using Express, MongoDB, and Bloom filters.
+
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6+-blue)](https://www.mongodb.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## Features
 
@@ -13,24 +17,34 @@ A Node.js service for message deduplication using Express, MongoDB, and Bloom fi
 - **Probabilistic Deduplication**: Allows rare false positives to save memory
 - **Web Frontend**: Simple HTML interface for testing the service
 
-## Installation
+## Quick Start
 
-1. Install dependencies:
+### Prerequisites
+- Node.js 18+
+- MongoDB 6+
+- Git
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/message-deduplication-service.git
+   cd message-deduplication-service
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. Start MongoDB (ensure it's running on localhost:27017 or set MONGO_URL)
+3. **Start MongoDB** (ensure it's running on localhost:27017 or set MONGO_URL)
 
-3. Start the service:
+4. **Start the service**:
    ```bash
    npm start
    ```
 
-For development:
-```bash
-npm run dev
-```
+5. **Access the web interface**: http://localhost:3000
 
 ## Demo Scripts
 
@@ -47,28 +61,82 @@ chmod +x demo.sh
 ./demo.sh
 ```
 
-## Usage
+## Deployment
 
-### Web Interface
-
-Open your browser and go to `http://localhost:3000` to access the web interface. You can:
-- Enter messages in the textarea
-- Submit to check for duplicates
-- View recent message history
-
-### API Usage
-
-Send a POST request to `/message` with JSON body containing the message content:
-
+### Local Development
 ```bash
-curl -X POST http://localhost:3000/message \
-  -H "Content-Type: application/json" \
-  -d '{"content": "Your message here"}'
+npm run dev  # Runs with nodemon for auto-restart
 ```
 
-Response:
-- `{"status": "Processed", "id": "hash"}` - Message processed
-- `{"error": "Duplicate message", "id": "hash"}` - Duplicate detected
+### Production
+```bash
+npm start  # Production server
+```
+
+### Environment Variables
+- `MONGO_URL`: MongoDB connection string (default: mongodb://localhost:27017)
+- `PORT`: Server port (default: 3000)
+
+## Project Structure
+
+```
+message-deduplication-service/
+├── app.js                 # Main Express server
+├── package.json           # Dependencies and scripts
+├── README.md              # Documentation
+├── demo.ps1               # PowerShell demo script
+├── demo.sh                # Bash demo script
+├── push_to_github.ps1     # GitHub deployment script
+├── .gitignore             # Git ignore rules
+├── public/                # Frontend assets
+│   ├── index.html         # Web interface
+│   ├── style.css          # CSS styling
+│   └── app.js             # Frontend JavaScript
+└── scripts/               # Utility scripts
+    └── garbage_collect.sh # Manual cleanup script
+```
+
+## Architecture
+
+- **Bloom Filter**: In-memory probabilistic data structure for fast duplicate checking
+- **MongoDB TTL**: Automatic expiration of old message IDs (1 hour default)
+- **SHA-256 Hashing**: Content-based message ID generation
+- **Express Server**: RESTful API with static file serving
+- **Web Frontend**: HTML/CSS/JS interface for easy testing
+
+## API Endpoints
+
+### Health Check
+```http
+GET /health
+```
+Response: `{"status": "OK"}`
+
+### Process Message
+```http
+POST /message
+Content-Type: application/json
+
+{
+  "content": "Your message here"
+}
+```
+
+**Success Response:**
+```json
+{
+  "status": "Processed",
+  "id": "sha256-hash-of-message"
+}
+```
+
+**Duplicate Response:**
+```json
+{
+  "error": "Duplicate message",
+  "id": "sha256-hash-of-message"
+}
+```
 
 ## Configuration
 
@@ -84,6 +152,18 @@ npm run gc
 ```
 
 This script can be used for additional cleanup if needed, though MongoDB TTL handles automatic expiration.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Git Integration
 
