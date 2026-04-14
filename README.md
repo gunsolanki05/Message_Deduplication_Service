@@ -11,6 +11,7 @@ A Node.js service for message deduplication using Express, MongoDB, and Bloom fi
 - **Git**: Version control for deduplication policies
 - **Unix Timestamps**: Consistent expiration timing
 - **Probabilistic Deduplication**: Allows rare false positives to save memory
+- **Web Frontend**: Simple HTML interface for testing the service
 
 ## Installation
 
@@ -32,6 +33,15 @@ npm run dev
 ```
 
 ## Usage
+
+### Web Interface
+
+Open your browser and go to `http://localhost:3000` to access the web interface. You can:
+- Enter messages in the textarea
+- Submit to check for duplicates
+- View recent message history
+
+### API Usage
 
 Send a POST request to `/message` with JSON body containing the message content:
 
