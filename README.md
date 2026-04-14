@@ -13,21 +13,24 @@ A Node.js service for message deduplication using Express, MongoDB, and Bloom fi
 - **Probabilistic Deduplication**: Allows rare false positives to save memory
 - **Web Frontend**: Simple HTML interface for testing the service
 
-## Quick Start
+## Installation
 
-1. **Prerequisites**: Ensure MongoDB is running on `mongodb://localhost:27017`
-
-2. **Install dependencies**:
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Start the service**:
+2. Start MongoDB (ensure it's running on localhost:27017 or set MONGO_URL)
+
+3. Start the service:
    ```bash
    npm start
    ```
 
-4. **Access the web interface**: http://localhost:3000
+For development:
+```bash
+npm run dev
+```
 
 ## Demo Scripts
 
@@ -44,7 +47,16 @@ chmod +x demo.sh
 ./demo.sh
 ```
 
-## API Usage
+## Usage
+
+### Web Interface
+
+Open your browser and go to `http://localhost:3000` to access the web interface. You can:
+- Enter messages in the textarea
+- Submit to check for duplicates
+- View recent message history
+
+### API Usage
 
 Send a POST request to `/message` with JSON body containing the message content:
 
@@ -76,11 +88,3 @@ This script can be used for additional cleanup if needed, though MongoDB TTL han
 ## Git Integration
 
 The project uses Git to track changes in deduplication policies and code evolution.
-
-## Architecture Overview
-
-- **Bloom Filter**: In-memory probabilistic data structure for fast duplicate checking
-- **MongoDB TTL**: Automatic expiration of old message IDs
-- **SHA-256 Hashing**: Content-based message ID generation
-- **Express Server**: RESTful API with static file serving
-- **Web Frontend**: HTML/CSS/JS interface for easy testing
