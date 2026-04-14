@@ -1,0 +1,28 @@
+{
+  "name": "deduplication-service",
+  "version": "1.0.0",
+  "description": "A message deduplication service using Express, MongoDB, and Bloom filters",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "gc": "./scripts/garbage_collect.sh"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "bloomfilter": "^0.0.18",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "deduplication",
+    "bloom-filter",
+    "mongodb",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC"
+}
