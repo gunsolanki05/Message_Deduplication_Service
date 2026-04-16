@@ -71,24 +71,3 @@ document.addEventListener('DOMContentLoaded', function() {
             messageList.removeChild(messageList.lastChild);
         }
     }
-
-    function loadRecentMessages() {
-        // For demo purposes, we'll store recent messages in localStorage
-        // In a real app, you might have an endpoint to fetch recent messages
-        const recent = JSON.parse(localStorage.getItem('recentMessages') || '[]');
-        recent.forEach(msg => {
-            addMessageToList(msg.content, msg.id, msg.status);
-        });
-    }
-
-    // Override addMessageToList to also save to localStorage
-    const originalAddMessage = addMessageToList;
-    addMessageToList = function(content, id, status) {
-        originalAddMessage(content, id, status);
-
-        const recent = JSON.parse(localStorage.getItem('recentMessages') || '[]');
-        recent.unshift({ content, id, status, timestamp: Date.now() });
-        if (recent.length > 10) recent.pop();
-        localStorage.setItem('recentMessages', JSON.stringify(recent));
-    };
-});
