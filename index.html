@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Deduplication Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Message Deduplication Service</h1>
+        <p>Enter a message to check for duplicates. The service uses Bloom filters for efficient deduplication.</p>
+
+        <form id="messageForm">
+            <textarea id="messageInput" placeholder="Enter your message here..." required></textarea>
+            <button type="submit">Submit Message</button>
+        </form>
+
+        <div id="result" class="result hidden">
+            <h2>Result:</h2>
+            <p id="resultText"></p>
+            <p id="messageId"></p>
+        </div>
+
+        <div id="history" class="history">
+            <h2>Recent Messages</h2>
+            <ul id="messageList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
