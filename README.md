@@ -159,7 +159,41 @@ This script can be used for additional cleanup if needed, though MongoDB TTL han
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+5. Open a Pull Request.
+
+## Future Scope
+
+This project can be further enhanced in several ways to improve scalability, accuracy, and usability:
+
+- **Distributed Bloom Filters**  
+  Extend the system to use distributed Bloom filters (e.g., Redis-based) for handling large-scale, multi-instance deployments.
+
+- **False Positive Optimization**  
+  Implement advanced probabilistic techniques or counting Bloom filters to reduce false positives.
+
+- **Message Queue Integration**  
+  Integrate with systems like Kafka or RabbitMQ to handle high-throughput, real-time message streams.
+
+- **Horizontal Scaling**  
+  Deploy multiple instances behind a load balancer for improved performance and fault tolerance.
+
+- **Advanced Analytics Dashboard**  
+  Build a dashboard to visualize duplicate rates, traffic patterns, and system performance metrics.
+
+- **Custom TTL Policies**  
+  Allow dynamic TTL configuration based on message type or priority.
+
+- **Authentication & Security**  
+  Add API authentication (JWT/OAuth) and rate limiting to secure the service.
+
+- **Cloud Deployment**  
+  Deploy on AWS/GCP/Azure with containerization (Docker + Kubernetes) for production-grade scalability.
+
+- **Logging & Monitoring**  
+  Integrate tools like Prometheus and Grafana for monitoring and alerting.
+
+- **Multi-format Support**  
+  Extend deduplication for different data types like images, files, or structured JSON payloads.
 
 ## License
 
