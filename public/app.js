@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load recent messages on page load
     loadRecentMessages();
 
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async function( e) {
         e.preventDefault();
 
         const content = messageInput.value.trim();
