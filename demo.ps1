@@ -8,7 +8,7 @@ Write-Host ""
 # Check if server is running
 Write-Host "1. Checking if server is running..." -ForegroundColor Yellow
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:3000/health" -Method GET -TimeoutSec 5
+    $response = Invoke-WebRequest -Uri "http://localhost:3000/health" -Method GET -TimeoutSec      5
     if ($response.StatusCode -eq 200) {
         Write-Host "✅ Server is running on http://localhost:3000" -ForegroundColor Green
     }
